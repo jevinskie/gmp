@@ -112,6 +112,7 @@ LIBGMPXX_LT_CURRENT  = 11
 LIBGMPXX_LT_REVISION = 0
 LIBGMPXX_LT_AGE      = 7
 
+ACLOCAL_AMFLAGS = -I m4
 
 SUBDIRS = tests mpn mpz mpq mpf printf scanf rand cxx demos tune doc
 
