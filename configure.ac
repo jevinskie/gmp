@@ -36,7 +36,7 @@ AC_COPYRIGHT(GMP_COPYRIGHT)
 AH_TOP(/*GMP_COPYRIGHT*/)
 
 AC_REVISION($Revision$)
-AC_PREREQ([2.69])
+AC_PREREQ([2.72])
 AC_INIT([GNU MP],[GMP_VERSION],[gmp-bugs@gmplib.org (see https://gmplib.org/manual/Reporting-Bugs.html)],[gmp])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIRS([m4])
@@ -459,12 +459,6 @@ AC_ARG_VAR(ABI, [desired ABI (for processors supporting more than one ABI)])
 # abilist needs to be non-empty, "standard" is just a generic name here
 abilist="standard"
 
-# FIXME: We'd like to prefer an ANSI compiler, perhaps by preferring
-# c89 over cc here.  But note that on HP-UX c89 provides a castrated
-# environment, and would want to be excluded somehow.  Maybe
-# AC_PROG_CC_STDC already does enough to stick cc into ANSI mode and
-# we don't need to worry.
-#
 cclist="gcc cc"
 
 gcc_cflags="-O2 -pedantic"
@@ -2541,7 +2535,6 @@ AC_SUBST(DEFN_LONG_LONG_LIMB)
 
 # The C compiler and preprocessor, put into ANSI mode if possible.
 AC_PROG_CC
-AC_PROG_CC_C99
 AC_PROG_CPP
 
 #if test "$ac_cv_prog_cc_c99" = no; then
@@ -2752,7 +2745,7 @@ Use "--disable-static --enable-shared" to build just a DLL.])
     fi
 
     # "-no-undefined" is required when building a DLL, see documentation on
-    # AC_LIBTOOL_WIN32_DLL.
+    # win32.
     #
     # "-Wl,--export-all-symbols" is a bit of a hack, it gets all libgmp and
     # libgmpxx functions and variables exported.  This is what libtool did
@@ -2786,7 +2779,7 @@ Use "--disable-static --enable-shared" to build just a DLL.])
 esac
 
 
-# Ensure that $CONFIG_SHELL is available for AC_LIBTOOL_SYS_MAX_CMD_LEN.
+# Ensure that $CONFIG_SHELL is available for LT_CMD_MAX_LEN.
 # It's often set already by _LT_AC_PROG_ECHO_BACKSLASH or
 # _AS_LINENO_PREPARE, but not always.
 #
